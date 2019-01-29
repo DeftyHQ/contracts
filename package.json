@@ -1,0 +1,22 @@
+{
+  "name": "defty-contracts",
+  "version": "1.0.0",
+  "main": "index.js",
+  "author": "Emmanuel Vilsbol <emmanuel@vilsbol.com>",
+  "license": "MIT",
+  "scripts": {
+    "build": "NODE_ENV=development; truffle migrate --reset",
+    "console": "NODE_ENV=development; truffle console",
+    "test": "NODE_ENV=development; truffle test",
+    "build:kovan": "NODE_ENV=staging; truffle migrate --reset --network kovan",
+    "console:kovan": "NODE_ENV=staging; truffle console --network kovan"
+  },
+  "dependencies": {
+    "openzeppelin-solidity": "^2.1.2",
+    "truffle-contract": "^4.0.2"
+  },
+  "devDependencies": {
+    "dotenv-flow": "^0.2.0",
+    "truffle-hdwallet-provider": "^1.0.2"
+  }
+}
