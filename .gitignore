@@ -20,3 +20,4 @@ log/
 *.log
 node_modules
 .env.*
+build/
