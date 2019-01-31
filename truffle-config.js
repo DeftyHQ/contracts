@@ -14,7 +14,7 @@ module.exports = {
   // contracts_build_directory: path.join(__dirname, "client/src/contracts"),
   // compilers: {
   //   solc: {
-  //   // version: "0.4.20"  // ex:  "0.4.20". (Default: Truffle's installed solc)
+  //     version: "0.4.22"  // ex:  "0.4.20". (Default: Truffle's installed solc)
   //   }
   // },
 

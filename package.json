@@ -12,11 +12,12 @@
     "console:kovan": "NODE_ENV=staging; truffle console --network kovan"
   },
   "dependencies": {
-    "openzeppelin-solidity": "^2.1.2",
-    "truffle-contract": "^4.0.2"
+    "openzeppelin-solidity": "^2.1.2"
   },
   "devDependencies": {
     "dotenv-flow": "^0.2.0",
+    "ethereum-doppelganger": "^0.0.6",
+    "truffle-assertions": "^0.7.2",
     "truffle-hdwallet-provider": "^1.0.2"
   }
 }

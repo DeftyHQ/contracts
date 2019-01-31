@@ -172,19 +172,19 @@
   "sourceMap": "",
   "deployedSourceMap": "",
   "source": "pragma solidity ^0.5.0;\n\ninterface MakerCDP {\n  function open() external returns (bytes32 cup);\n  function join(uint wad) external; // Join PETH\n  function exit(uint wad) external; // Exit PETH\n  function give(bytes32 cup, address guy) external;\n  function lock(bytes32 cup, uint wad) external;\n  function free(bytes32 cup, uint wad) external;\n  function draw(bytes32 cup, uint wad) external;\n  function wipe(bytes32 cup, uint wad) external;\n  function per() external view returns (uint ray);\n  function lad(bytes32 cup) external view returns (address);\n}\n",
-  "sourcePath": "/Users/vilsbole/Developer/defty/metacoin/contracts/IMakerCDP.sol",
+  "sourcePath": "/Users/vilsbole/Developer/defty/contracts/contracts/IMakerCDP.sol",
   "ast": {
-    "absolutePath": "/Users/vilsbole/Developer/defty/metacoin/contracts/IMakerCDP.sol",
+    "absolutePath": "/Users/vilsbole/Developer/defty/contracts/contracts/IMakerCDP.sol",
     "exportedSymbols": {
       "MakerCDP": [
-        351
+        366
       ]
     },
-    "id": 352,
+    "id": 367,
     "nodeType": "SourceUnit",
     "nodes": [
       {
-        "id": 288,
+        "id": 303,
         "literals": [
           "solidity",
           "^",
@@ -200,9 +200,9 @@
         "contractKind": "interface",
         "documentation": null,
         "fullyImplemented": false,
-        "id": 351,
+        "id": 366,
         "linearizedBaseContracts": [
-          351
+          366
         ],
         "name": "MakerCDP",
         "nodeType": "ContractDefinition",
@@ -210,28 +210,28 @@
           {
             "body": null,
             "documentation": null,
-            "id": 293,
+            "id": 308,
             "implemented": false,
             "kind": "function",
             "modifiers": [],
             "name": "open",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 289,
+              "id": 304,
               "nodeType": "ParameterList",
               "parameters": [],
               "src": "61:2:1"
             },
             "returnParameters": {
-              "id": 292,
+              "id": 307,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 291,
+                  "id": 306,
                   "name": "cup",
                   "nodeType": "VariableDeclaration",
-                  "scope": 293,
+                  "scope": 308,
                   "src": "82:11:1",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -240,7 +240,7 @@
                     "typeString": "bytes32"
                   },
                   "typeName": {
-                    "id": 290,
+                    "id": 305,
                     "name": "bytes32",
                     "nodeType": "ElementaryTypeName",
                     "src": "82:7:1",
@@ -255,7 +255,7 @@
               ],
               "src": "81:13:1"
             },
-            "scope": 351,
+            "scope": 366,
             "src": "48:47:1",
             "stateMutability": "nonpayable",
             "superFunction": null,
@@ -264,22 +264,22 @@
           {
             "body": null,
             "documentation": null,
-            "id": 298,
+            "id": 313,
             "implemented": false,
             "kind": "function",
             "modifiers": [],
             "name": "join",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 296,
+              "id": 311,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 295,
+                  "id": 310,
                   "name": "wad",
                   "nodeType": "VariableDeclaration",
-                  "scope": 298,
+                  "scope": 313,
                   "src": "112:8:1",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -288,7 +288,7 @@
                     "typeString": "uint256"
                   },
                   "typeName": {
-                    "id": 294,
+                    "id": 309,
                     "name": "uint",
                     "nodeType": "ElementaryTypeName",
                     "src": "112:4:1",
@@ -304,12 +304,12 @@
               "src": "111:10:1"
             },
             "returnParameters": {
-              "id": 297,
+              "id": 312,
               "nodeType": "ParameterList",
               "parameters": [],
               "src": "130:0:1"
             },
-            "scope": 351,
+            "scope": 366,
             "src": "98:33:1",
             "stateMutability": "nonpayable",
             "superFunction": null,
@@ -318,22 +318,22 @@
           {
             "body": null,
             "documentation": null,
-            "id": 303,
+            "id": 318,
             "implemented": false,
             "kind": "function",
             "modifiers": [],
             "name": "exit",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 301,
+              "id": 316,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 300,
+                  "id": 315,
                   "name": "wad",
                   "nodeType": "VariableDeclaration",
-                  "scope": 303,
+                  "scope": 318,
                   "src": "161:8:1",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -342,7 +342,7 @@
                     "typeString": "uint256"
                   },
                   "typeName": {
-                    "id": 299,
+                    "id": 314,
                     "name": "uint",
                     "nodeType": "ElementaryTypeName",
                     "src": "161:4:1",
@@ -358,12 +358,12 @@
               "src": "160:10:1"
             },
             "returnParameters": {
-              "id": 302,
+              "id": 317,
               "nodeType": "ParameterList",
               "parameters": [],
               "src": "179:0:1"
             },
-            "scope": 351,
+            "scope": 366,
             "src": "147:33:1",
             "stateMutability": "nonpayable",
             "superFunction": null,
@@ -372,22 +372,22 @@
           {
             "body": null,
             "documentation": null,
-            "id": 310,
+            "id": 325,
             "implemented": false,
             "kind": "function",
             "modifiers": [],
             "name": "give",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 308,
+              "id": 323,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 305,
+                  "id": 320,
                   "name": "cup",
                   "nodeType": "VariableDeclaration",
-                  "scope": 310,
+                  "scope": 325,
                   "src": "210:11:1",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -396,7 +396,7 @@
                     "typeString": "bytes32"
                   },
                   "typeName": {
-                    "id": 304,
+                    "id": 319,
                     "name": "bytes32",
                     "nodeType": "ElementaryTypeName",
                     "src": "210:7:1",
@@ -410,10 +410,10 @@
                 },
                 {
                   "constant": false,
-                  "id": 307,
+                  "id": 322,
                   "name": "guy",
                   "nodeType": "VariableDeclaration",
-                  "scope": 310,
+                  "scope": 325,
                   "src": "223:11:1",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -422,7 +422,7 @@
                     "typeString": "address"
                   },
                   "typeName": {
-                    "id": 306,
+                    "id": 321,
                     "name": "address",
                     "nodeType": "ElementaryTypeName",
                     "src": "223:7:1",
@@ -439,12 +439,12 @@
               "src": "209:26:1"
             },
             "returnParameters": {
-              "id": 309,
+              "id": 324,
               "nodeType": "ParameterList",
               "parameters": [],
               "src": "244:0:1"
             },
-            "scope": 351,
+            "scope": 366,
             "src": "196:49:1",
             "stateMutability": "nonpayable",
             "superFunction": null,
@@ -453,22 +453,22 @@
           {
             "body": null,
             "documentation": null,
-            "id": 317,
+            "id": 332,
             "implemented": false,
             "kind": "function",
             "modifiers": [],
             "name": "lock",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 315,
+              "id": 330,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 312,
+                  "id": 327,
                   "name": "cup",
                   "nodeType": "VariableDeclaration",
-                  "scope": 317,
+                  "scope": 332,
                   "src": "262:11:1",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -477,7 +477,7 @@
                     "typeString": "bytes32"
                   },
                   "typeName": {
-                    "id": 311,
+                    "id": 326,
                     "name": "bytes32",
                     "nodeType": "ElementaryTypeName",
                     "src": "262:7:1",
@@ -491,10 +491,10 @@
                 },
                 {
                   "constant": false,
-                  "id": 314,
+                  "id": 329,
                   "name": "wad",
                   "nodeType": "VariableDeclaration",
-                  "scope": 317,
+                  "scope": 332,
                   "src": "275:8:1",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -503,7 +503,7 @@
                     "typeString": "uint256"
                   },
                   "typeName": {
-                    "id": 313,
+                    "id": 328,
                     "name": "uint",
                     "nodeType": "ElementaryTypeName",
                     "src": "275:4:1",
@@ -519,12 +519,12 @@
               "src": "261:23:1"
             },
             "returnParameters": {
-              "id": 316,
+              "id": 331,
               "nodeType": "ParameterList",
               "parameters": [],
               "src": "293:0:1"
             },
-            "scope": 351,
+            "scope": 366,
             "src": "248:46:1",
             "stateMutability": "nonpayable",
             "superFunction": null,
@@ -533,22 +533,22 @@
           {
             "body": null,
             "documentation": null,
-            "id": 324,
+            "id": 339,
             "implemented": false,
             "kind": "function",
             "modifiers": [],
             "name": "free",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 322,
+              "id": 337,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 319,
+                  "id": 334,
                   "name": "cup",
                   "nodeType": "VariableDeclaration",
-                  "scope": 324,
+                  "scope": 339,
                   "src": "311:11:1",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -557,7 +557,7 @@
                     "typeString": "bytes32"
                   },
                   "typeName": {
-                    "id": 318,
+                    "id": 333,
                     "name": "bytes32",
                     "nodeType": "ElementaryTypeName",
                     "src": "311:7:1",
@@ -571,10 +571,10 @@
                 },
                 {
                   "constant": false,
-                  "id": 321,
+                  "id": 336,
                   "name": "wad",
                   "nodeType": "VariableDeclaration",
-                  "scope": 324,
+                  "scope": 339,
                   "src": "324:8:1",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -583,7 +583,7 @@
                     "typeString": "uint256"
                   },
                   "typeName": {
-                    "id": 320,
+                    "id": 335,
                     "name": "uint",
                     "nodeType": "ElementaryTypeName",
                     "src": "324:4:1",
@@ -599,12 +599,12 @@
               "src": "310:23:1"
             },
             "returnParameters": {
-              "id": 323,
+              "id": 338,
               "nodeType": "ParameterList",
               "parameters": [],
               "src": "342:0:1"
             },
-            "scope": 351,
+            "scope": 366,
             "src": "297:46:1",
             "stateMutability": "nonpayable",
             "superFunction": null,
@@ -613,22 +613,22 @@
           {
             "body": null,
             "documentation": null,
-            "id": 331,
+            "id": 346,
             "implemented": false,
             "kind": "function",
             "modifiers": [],
             "name": "draw",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 329,
+              "id": 344,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 326,
+                  "id": 341,
                   "name": "cup",
                   "nodeType": "VariableDeclaration",
-                  "scope": 331,
+                  "scope": 346,
                   "src": "360:11:1",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -637,7 +637,7 @@
                     "typeString": "bytes32"
                   },
                   "typeName": {
-                    "id": 325,
+                    "id": 340,
                     "name": "bytes32",
                     "nodeType": "ElementaryTypeName",
                     "src": "360:7:1",
@@ -651,10 +651,10 @@
                 },
                 {
                   "constant": false,
-                  "id": 328,
+                  "id": 343,
                   "name": "wad",
                   "nodeType": "VariableDeclaration",
-                  "scope": 331,
+                  "scope": 346,
                   "src": "373:8:1",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -663,7 +663,7 @@
                     "typeString": "uint256"
                   },
                   "typeName": {
-                    "id": 327,
+                    "id": 342,
                     "name": "uint",
                     "nodeType": "ElementaryTypeName",
                     "src": "373:4:1",
@@ -679,12 +679,12 @@
               "src": "359:23:1"
             },
             "returnParameters": {
-              "id": 330,
+              "id": 345,
               "nodeType": "ParameterList",
               "parameters": [],
               "src": "391:0:1"
             },
-            "scope": 351,
+            "scope": 366,
             "src": "346:46:1",
             "stateMutability": "nonpayable",
             "superFunction": null,
@@ -693,22 +693,22 @@
           {
             "body": null,
             "documentation": null,
-            "id": 338,
+            "id": 353,
             "implemented": false,
             "kind": "function",
             "modifiers": [],
             "name": "wipe",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 336,
+              "id": 351,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 333,
+                  "id": 348,
                   "name": "cup",
                   "nodeType": "VariableDeclaration",
-                  "scope": 338,
+                  "scope": 353,
                   "src": "409:11:1",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -717,7 +717,7 @@
                     "typeString": "bytes32"
                   },
                   "typeName": {
-                    "id": 332,
+                    "id": 347,
                     "name": "bytes32",
                     "nodeType": "ElementaryTypeName",
                     "src": "409:7:1",
@@ -731,10 +731,10 @@
                 },
                 {
                   "constant": false,
-                  "id": 335,
+                  "id": 350,
                   "name": "wad",
                   "nodeType": "VariableDeclaration",
-                  "scope": 338,
+                  "scope": 353,
                   "src": "422:8:1",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -743,7 +743,7 @@
                     "typeString": "uint256"
                   },
                   "typeName": {
-                    "id": 334,
+                    "id": 349,
                     "name": "uint",
                     "nodeType": "ElementaryTypeName",
                     "src": "422:4:1",
@@ -759,12 +759,12 @@
               "src": "408:23:1"
             },
             "returnParameters": {
-              "id": 337,
+              "id": 352,
               "nodeType": "ParameterList",
               "parameters": [],
               "src": "440:0:1"
             },
-            "scope": 351,
+            "scope": 366,
             "src": "395:46:1",
             "stateMutability": "nonpayable",
             "superFunction": null,
@@ -773,28 +773,28 @@
           {
             "body": null,
             "documentation": null,
-            "id": 343,
+            "id": 358,
             "implemented": false,
             "kind": "function",
             "modifiers": [],
             "name": "per",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 339,
+              "id": 354,
               "nodeType": "ParameterList",
               "parameters": [],
               "src": "456:2:1"
             },
             "returnParameters": {
-              "id": 342,
+              "id": 357,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 341,
+                  "id": 356,
                   "name": "ray",
                   "nodeType": "VariableDeclaration",
-                  "scope": 343,
+                  "scope": 358,
                   "src": "482:8:1",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -803,7 +803,7 @@
                     "typeString": "uint256"
                   },
                   "typeName": {
-                    "id": 340,
+                    "id": 355,
                     "name": "uint",
                     "nodeType": "ElementaryTypeName",
                     "src": "482:4:1",
@@ -818,7 +818,7 @@
               ],
               "src": "481:10:1"
             },
-            "scope": 351,
+            "scope": 366,
             "src": "444:48:1",
             "stateMutability": "view",
             "superFunction": null,
@@ -827,22 +827,22 @@
           {
             "body": null,
             "documentation": null,
-            "id": 350,
+            "id": 365,
             "implemented": false,
             "kind": "function",
             "modifiers": [],
             "name": "lad",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 346,
+              "id": 361,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 345,
+                  "id": 360,
                   "name": "cup",
                   "nodeType": "VariableDeclaration",
-                  "scope": 350,
+                  "scope": 365,
                   "src": "508:11:1",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -851,7 +851,7 @@
                     "typeString": "bytes32"
                   },
                   "typeName": {
-                    "id": 344,
+                    "id": 359,
                     "name": "bytes32",
                     "nodeType": "ElementaryTypeName",
                     "src": "508:7:1",
@@ -867,15 +867,15 @@
               "src": "507:13:1"
             },
             "returnParameters": {
-              "id": 349,
+              "id": 364,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 348,
+                  "id": 363,
                   "name": "",
                   "nodeType": "VariableDeclaration",
-                  "scope": 350,
+                  "scope": 365,
                   "src": "544:7:1",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -884,7 +884,7 @@
                     "typeString": "address"
                   },
                   "typeName": {
-                    "id": 347,
+                    "id": 362,
                     "name": "address",
                     "nodeType": "ElementaryTypeName",
                     "src": "544:7:1",
@@ -900,31 +900,31 @@
               ],
               "src": "543:9:1"
             },
-            "scope": 351,
+            "scope": 366,
             "src": "495:58:1",
             "stateMutability": "view",
             "superFunction": null,
             "visibility": "external"
           }
         ],
-        "scope": 352,
+        "scope": 367,
         "src": "25:530:1"
       }
     ],
     "src": "0:556:1"
   },
   "legacyAST": {
-    "absolutePath": "/Users/vilsbole/Developer/defty/metacoin/contracts/IMakerCDP.sol",
+    "absolutePath": "/Users/vilsbole/Developer/defty/contracts/contracts/IMakerCDP.sol",
     "exportedSymbols": {
       "MakerCDP": [
-        351
+        366
       ]
     },
-    "id": 352,
+    "id": 367,
     "nodeType": "SourceUnit",
     "nodes": [
       {
-        "id": 288,
+        "id": 303,
         "literals": [
           "solidity",
           "^",
@@ -940,9 +940,9 @@
         "contractKind": "interface",
         "documentation": null,
         "fullyImplemented": false,
-        "id": 351,
+        "id": 366,
         "linearizedBaseContracts": [
-          351
+          366
         ],
         "name": "MakerCDP",
         "nodeType": "ContractDefinition",
@@ -950,28 +950,28 @@
           {
             "body": null,
             "documentation": null,
-            "id": 293,
+            "id": 308,
             "implemented": false,
             "kind": "function",
             "modifiers": [],
             "name": "open",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 289,
+              "id": 304,
               "nodeType": "ParameterList",
               "parameters": [],
               "src": "61:2:1"
             },
             "returnParameters": {
-              "id": 292,
+              "id": 307,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 291,
+                  "id": 306,
                   "name": "cup",
                   "nodeType": "VariableDeclaration",
-                  "scope": 293,
+                  "scope": 308,
                   "src": "82:11:1",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -980,7 +980,7 @@
                     "typeString": "bytes32"
                   },
                   "typeName": {
-                    "id": 290,
+                    "id": 305,
                     "name": "bytes32",
                     "nodeType": "ElementaryTypeName",
                     "src": "82:7:1",
@@ -995,7 +995,7 @@
               ],
               "src": "81:13:1"
             },
-            "scope": 351,
+            "scope": 366,
             "src": "48:47:1",
             "stateMutability": "nonpayable",
             "superFunction": null,
@@ -1004,22 +1004,22 @@
           {
             "body": null,
             "documentation": null,
-            "id": 298,
+            "id": 313,
             "implemented": false,
             "kind": "function",
             "modifiers": [],
             "name": "join",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 296,
+              "id": 311,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 295,
+                  "id": 310,
                   "name": "wad",
                   "nodeType": "VariableDeclaration",
-                  "scope": 298,
+                  "scope": 313,
                   "src": "112:8:1",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -1028,7 +1028,7 @@
                     "typeString": "uint256"
                   },
                   "typeName": {
-                    "id": 294,
+                    "id": 309,
                     "name": "uint",
                     "nodeType": "ElementaryTypeName",
                     "src": "112:4:1",
@@ -1044,12 +1044,12 @@
               "src": "111:10:1"
             },
             "returnParameters": {
-              "id": 297,
+              "id": 312,
               "nodeType": "ParameterList",
               "parameters": [],
               "src": "130:0:1"
             },
-            "scope": 351,
+            "scope": 366,
             "src": "98:33:1",
             "stateMutability": "nonpayable",
             "superFunction": null,
@@ -1058,22 +1058,22 @@
           {
             "body": null,
             "documentation": null,
-            "id": 303,
+            "id": 318,
             "implemented": false,
             "kind": "function",
             "modifiers": [],
             "name": "exit",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 301,
+              "id": 316,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 300,
+                  "id": 315,
                   "name": "wad",
                   "nodeType": "VariableDeclaration",
-                  "scope": 303,
+                  "scope": 318,
                   "src": "161:8:1",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -1082,7 +1082,7 @@
                     "typeString": "uint256"
                   },
                   "typeName": {
-                    "id": 299,
+                    "id": 314,
                     "name": "uint",
                     "nodeType": "ElementaryTypeName",
                     "src": "161:4:1",
@@ -1098,12 +1098,12 @@
               "src": "160:10:1"
             },
             "returnParameters": {
-              "id": 302,
+              "id": 317,
               "nodeType": "ParameterList",
               "parameters": [],
               "src": "179:0:1"
             },
-            "scope": 351,
+            "scope": 366,
             "src": "147:33:1",
             "stateMutability": "nonpayable",
             "superFunction": null,
@@ -1112,22 +1112,22 @@
           {
             "body": null,
             "documentation": null,
-            "id": 310,
+            "id": 325,
             "implemented": false,
             "kind": "function",
             "modifiers": [],
             "name": "give",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 308,
+              "id": 323,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 305,
+                  "id": 320,
                   "name": "cup",
                   "nodeType": "VariableDeclaration",
-                  "scope": 310,
+                  "scope": 325,
                   "src": "210:11:1",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -1136,7 +1136,7 @@
                     "typeString": "bytes32"
                   },
                   "typeName": {
-                    "id": 304,
+                    "id": 319,
                     "name": "bytes32",
                     "nodeType": "ElementaryTypeName",
                     "src": "210:7:1",
@@ -1150,10 +1150,10 @@
                 },
                 {
                   "constant": false,
-                  "id": 307,
+                  "id": 322,
                   "name": "guy",
                   "nodeType": "VariableDeclaration",
-                  "scope": 310,
+                  "scope": 325,
                   "src": "223:11:1",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -1162,7 +1162,7 @@
                     "typeString": "address"
                   },
                   "typeName": {
-                    "id": 306,
+                    "id": 321,
                     "name": "address",
                     "nodeType": "ElementaryTypeName",
                     "src": "223:7:1",
@@ -1179,12 +1179,12 @@
               "src": "209:26:1"
             },
             "returnParameters": {
-              "id": 309,
+              "id": 324,
               "nodeType": "ParameterList",
               "parameters": [],
               "src": "244:0:1"
             },
-            "scope": 351,
+            "scope": 366,
             "src": "196:49:1",
             "stateMutability": "nonpayable",
             "superFunction": null,
@@ -1193,22 +1193,22 @@
           {
             "body": null,
             "documentation": null,
-            "id": 317,
+            "id": 332,
             "implemented": false,
             "kind": "function",
             "modifiers": [],
             "name": "lock",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 315,
+              "id": 330,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 312,
+                  "id": 327,
                   "name": "cup",
                   "nodeType": "VariableDeclaration",
-                  "scope": 317,
+                  "scope": 332,
                   "src": "262:11:1",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -1217,7 +1217,7 @@
                     "typeString": "bytes32"
                   },
                   "typeName": {
-                    "id": 311,
+                    "id": 326,
                     "name": "bytes32",
                     "nodeType": "ElementaryTypeName",
                     "src": "262:7:1",
@@ -1231,10 +1231,10 @@
                 },
                 {
                   "constant": false,
-                  "id": 314,
+                  "id": 329,
                   "name": "wad",
                   "nodeType": "VariableDeclaration",
-                  "scope": 317,
+                  "scope": 332,
                   "src": "275:8:1",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -1243,7 +1243,7 @@
                     "typeString": "uint256"
                   },
                   "typeName": {
-                    "id": 313,
+                    "id": 328,
                     "name": "uint",
                     "nodeType": "ElementaryTypeName",
                     "src": "275:4:1",
@@ -1259,12 +1259,12 @@
               "src": "261:23:1"
             },
             "returnParameters": {
-              "id": 316,
+              "id": 331,
               "nodeType": "ParameterList",
               "parameters": [],
               "src": "293:0:1"
             },
-            "scope": 351,
+            "scope": 366,
             "src": "248:46:1",
             "stateMutability": "nonpayable",
             "superFunction": null,
@@ -1273,22 +1273,22 @@
           {
             "body": null,
             "documentation": null,
-            "id": 324,
+            "id": 339,
             "implemented": false,
             "kind": "function",
             "modifiers": [],
             "name": "free",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 322,
+              "id": 337,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 319,
+                  "id": 334,
                   "name": "cup",
                   "nodeType": "VariableDeclaration",
-                  "scope": 324,
+                  "scope": 339,
                   "src": "311:11:1",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -1297,7 +1297,7 @@
                     "typeString": "bytes32"
                   },
                   "typeName": {
-                    "id": 318,
+                    "id": 333,
                     "name": "bytes32",
                     "nodeType": "ElementaryTypeName",
                     "src": "311:7:1",
@@ -1311,10 +1311,10 @@
                 },
                 {
                   "constant": false,
-                  "id": 321,
+                  "id": 336,
                   "name": "wad",
                   "nodeType": "VariableDeclaration",
-                  "scope": 324,
+                  "scope": 339,
                   "src": "324:8:1",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -1323,7 +1323,7 @@
                     "typeString": "uint256"
                   },
                   "typeName": {
-                    "id": 320,
+                    "id": 335,
                     "name": "uint",
                     "nodeType": "ElementaryTypeName",
                     "src": "324:4:1",
@@ -1339,12 +1339,12 @@
               "src": "310:23:1"
             },
             "returnParameters": {
-              "id": 323,
+              "id": 338,
               "nodeType": "ParameterList",
               "parameters": [],
               "src": "342:0:1"
             },
-            "scope": 351,
+            "scope": 366,
             "src": "297:46:1",
             "stateMutability": "nonpayable",
             "superFunction": null,
@@ -1353,22 +1353,22 @@
           {
             "body": null,
             "documentation": null,
-            "id": 331,
+            "id": 346,
             "implemented": false,
             "kind": "function",
             "modifiers": [],
             "name": "draw",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 329,
+              "id": 344,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 326,
+                  "id": 341,
                   "name": "cup",
                   "nodeType": "VariableDeclaration",
-                  "scope": 331,
+                  "scope": 346,
                   "src": "360:11:1",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -1377,7 +1377,7 @@
                     "typeString": "bytes32"
                   },
                   "typeName": {
-                    "id": 325,
+                    "id": 340,
                     "name": "bytes32",
                     "nodeType": "ElementaryTypeName",
                     "src": "360:7:1",
@@ -1391,10 +1391,10 @@
                 },
                 {
                   "constant": false,
-                  "id": 328,
+                  "id": 343,
                   "name": "wad",
                   "nodeType": "VariableDeclaration",
-                  "scope": 331,
+                  "scope": 346,
                   "src": "373:8:1",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -1403,7 +1403,7 @@
                     "typeString": "uint256"
                   },
                   "typeName": {
-                    "id": 327,
+                    "id": 342,
                     "name": "uint",
                     "nodeType": "ElementaryTypeName",
                     "src": "373:4:1",
@@ -1419,12 +1419,12 @@
               "src": "359:23:1"
             },
             "returnParameters": {
-              "id": 330,
+              "id": 345,
               "nodeType": "ParameterList",
               "parameters": [],
               "src": "391:0:1"
             },
-            "scope": 351,
+            "scope": 366,
             "src": "346:46:1",
             "stateMutability": "nonpayable",
             "superFunction": null,
@@ -1433,22 +1433,22 @@
           {
             "body": null,
             "documentation": null,
-            "id": 338,
+            "id": 353,
             "implemented": false,
             "kind": "function",
             "modifiers": [],
             "name": "wipe",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 336,
+              "id": 351,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 333,
+                  "id": 348,
                   "name": "cup",
                   "nodeType": "VariableDeclaration",
-                  "scope": 338,
+                  "scope": 353,
                   "src": "409:11:1",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -1457,7 +1457,7 @@
                     "typeString": "bytes32"
                   },
                   "typeName": {
-                    "id": 332,
+                    "id": 347,
                     "name": "bytes32",
                     "nodeType": "ElementaryTypeName",
                     "src": "409:7:1",
@@ -1471,10 +1471,10 @@
                 },
                 {
                   "constant": false,
-                  "id": 335,
+                  "id": 350,
                   "name": "wad",
                   "nodeType": "VariableDeclaration",
-                  "scope": 338,
+                  "scope": 353,
                   "src": "422:8:1",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -1483,7 +1483,7 @@
                     "typeString": "uint256"
                   },
                   "typeName": {
-                    "id": 334,
+                    "id": 349,
                     "name": "uint",
                     "nodeType": "ElementaryTypeName",
                     "src": "422:4:1",
@@ -1499,12 +1499,12 @@
               "src": "408:23:1"
             },
             "returnParameters": {
-              "id": 337,
+              "id": 352,
               "nodeType": "ParameterList",
               "parameters": [],
               "src": "440:0:1"
             },
-            "scope": 351,
+            "scope": 366,
             "src": "395:46:1",
             "stateMutability": "nonpayable",
             "superFunction": null,
@@ -1513,28 +1513,28 @@
           {
             "body": null,
             "documentation": null,
-            "id": 343,
+            "id": 358,
             "implemented": false,
             "kind": "function",
             "modifiers": [],
             "name": "per",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 339,
+              "id": 354,
               "nodeType": "ParameterList",
               "parameters": [],
               "src": "456:2:1"
             },
             "returnParameters": {
-              "id": 342,
+              "id": 357,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 341,
+                  "id": 356,
                   "name": "ray",
                   "nodeType": "VariableDeclaration",
-                  "scope": 343,
+                  "scope": 358,
                   "src": "482:8:1",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -1543,7 +1543,7 @@
                     "typeString": "uint256"
                   },
                   "typeName": {
-                    "id": 340,
+                    "id": 355,
                     "name": "uint",
                     "nodeType": "ElementaryTypeName",
                     "src": "482:4:1",
@@ -1558,7 +1558,7 @@
               ],
               "src": "481:10:1"
             },
-            "scope": 351,
+            "scope": 366,
             "src": "444:48:1",
             "stateMutability": "view",
             "superFunction": null,
@@ -1567,22 +1567,22 @@
           {
             "body": null,
             "documentation": null,
-            "id": 350,
+            "id": 365,
             "implemented": false,
             "kind": "function",
             "modifiers": [],
             "name": "lad",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 346,
+              "id": 361,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 345,
+                  "id": 360,
                   "name": "cup",
                   "nodeType": "VariableDeclaration",
-                  "scope": 350,
+                  "scope": 365,
                   "src": "508:11:1",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -1591,7 +1591,7 @@
                     "typeString": "bytes32"
                   },
                   "typeName": {
-                    "id": 344,
+                    "id": 359,
                     "name": "bytes32",
                     "nodeType": "ElementaryTypeName",
                     "src": "508:7:1",
@@ -1607,15 +1607,15 @@
               "src": "507:13:1"
             },
             "returnParameters": {
-              "id": 349,
+              "id": 364,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 348,
+                  "id": 363,
                   "name": "",
                   "nodeType": "VariableDeclaration",
-                  "scope": 350,
+                  "scope": 365,
                   "src": "544:7:1",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -1624,7 +1624,7 @@
                     "typeString": "address"
                   },
                   "typeName": {
-                    "id": 347,
+                    "id": 362,
                     "name": "address",
                     "nodeType": "ElementaryTypeName",
                     "src": "544:7:1",
@@ -1640,14 +1640,14 @@
               ],
               "src": "543:9:1"
             },
-            "scope": 351,
+            "scope": 366,
             "src": "495:58:1",
             "stateMutability": "view",
             "superFunction": null,
             "visibility": "external"
           }
         ],
-        "scope": 352,
+        "scope": 367,
         "src": "25:530:1"
       }
     ],
@@ -1659,7 +1659,7 @@
   },
   "networks": {},
   "schemaVersion": "3.0.1",
-  "updatedAt": "2019-01-29T12:53:48.420Z",
+  "updatedAt": "2019-01-31T17:04:44.828Z",
   "devdoc": {
     "methods": {}
   },

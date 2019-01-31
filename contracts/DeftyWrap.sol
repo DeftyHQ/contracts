@@ -4,11 +4,9 @@ import 'openzeppelin-solidity/contracts/ownership/Ownable.sol';
 import 'openzeppelin-solidity/contracts/drafts/Counter.sol';
 import 'openzeppelin-solidity/contracts/token/ERC721/ERC721Full.sol';
 import 'openzeppelin-solidity/contracts/token/ERC721/IERC721Metadata.sol';
-import 'openzeppelin-solidity/contracts/token/ERC721/ERC721MetadataMintable.sol';
-import './IMakerCDP.sol';
-import './UtilsLib.sol';
+import { ISaiTub as SaiTub } from './lib/sai/ITub.sol';
 
-contract DeftyWrap is Ownable, IERC721Metadata, ERC721Full, ERC721MetadataMintable {
+contract DeftyWrap is Ownable, IERC721Metadata, ERC721Full {
 
   using Counter for Counter.Counter;
   Counter.Counter private tokenId;
@@ -22,18 +20,18 @@ contract DeftyWrap is Ownable, IERC721Metadata, ERC721Full, ERC721MetadataMintab
 
   struct ProofOfOwnership {
     bytes32 cdpId;
+    uint256 tokenId;
     address previousOwner;
     WrapState state;
   }
 
   address public cdpAddress;
-  bytes32 public cupId;
-  address public cupLad;
-  address public sender;
-
   mapping(bytes32 => ProofOfOwnership) public proofRegistery;
+  mapping(uint256 => bytes32) public tokenIdToCdpId;
 
-  event Wrap(address sender, bytes32 cdpId, address myself);
+  event Proved(address sender, bytes32 cdpId, WrapState state);
+  event Wrapped(address sender, bytes32 cdpId, uint256 tokenId);
+  event Unwrapped(address sender, bytes32 cdpId, uint256 tokenId);
 
   constructor(address _cdpAddress)
     Ownable()
@@ -49,10 +47,6 @@ contract DeftyWrap is Ownable, IERC721Metadata, ERC721Full, ERC721MetadataMintab
     cdpAddress = _cdpAddress;
   }
 
-  function getCdpAddress() view external returns (address) {
-    return cdpAddress;
-  }
-
   /*
     - Receive an existing cdpId
     - If msg.sender is the current 'lad' we create a temporary NFT.
@@ -63,16 +57,13 @@ contract DeftyWrap is Ownable, IERC721Metadata, ERC721Full, ERC721MetadataMintab
   function proveOwnership(bytes32 _cdpId)
     public
   {
-
-    MakerCDP untrustedMkr = MakerCDP(cdpAddress);
-    cupId = _cdpId;
-    cupLad = untrustedMkr.lad(_cdpId);
-    sender = msg.sender;
-    require(cupLad == msg.sender, 'The msg.sender is not the owner of the CDP');
+    SaiTub untrustedMkr = SaiTub(cdpAddress);
+    require(untrustedMkr.lad(_cdpId) == msg.sender, 'The msg.sender is not the owner of the CDP');
 
     proofRegistery[_cdpId].cdpId = _cdpId;
     proofRegistery[_cdpId].previousOwner = msg.sender;
     proofRegistery[_cdpId].state = WrapState.PendingTransfer;
+    emit Proved(msg.sender, _cdpId, proofRegistery[_cdpId].state);
   }
 
   /*
@@ -85,15 +76,19 @@ contract DeftyWrap is Ownable, IERC721Metadata, ERC721Full, ERC721MetadataMintab
     public
     returns (uint256 _deftyTokenId)
   {
-    MakerCDP untrustedMkr = MakerCDP(cdpAddress);
-    require(proofRegistery[_cdpId].state != WrapState.Undefined, 'Please proveOwnership() of CDP before wrapping');
-    require(proofRegistery[_cdpId].previousOwner == msg.sender, 'You must be the preivousOwner of the CDP to create an DYT');
-    require(untrustedMkr.lad(_cdpId) == address(this), 'Transfer ownership to this contract before wrapping');
+    SaiTub untrustedMkr = SaiTub(cdpAddress);
+    require(proofRegistery[_cdpId].state != WrapState.Undefined, 'You must proveOwnership() of CDP before wrapping');
+    require(proofRegistery[_cdpId].previousOwner == msg.sender, 'You must be the previousOwner in order to wrap a CDP');
+    require(untrustedMkr.lad(_cdpId) == address(this), 'You must give() the CDP to this contract before calling wrap()');
 
      _deftyTokenId = tokenId.next();
-    mintWithTokenURI(msg.sender, _deftyTokenId, UtilsLib._bytes32ToStr(_cdpId));
+    _mint(msg.sender, _deftyTokenId);
 
+    proofRegistery[_cdpId].tokenId = _deftyTokenId;
     proofRegistery[_cdpId].state = WrapState.Wrapped;
+
+    tokenIdToCdpId[_deftyTokenId] = _cdpId;
+    emit Wrapped(msg.sender, _cdpId, _deftyTokenId);
   }
 
   /*
@@ -107,15 +102,16 @@ contract DeftyWrap is Ownable, IERC721Metadata, ERC721Full, ERC721MetadataMintab
     public
     returns (bool)
   {
+    SaiTub untrustedMkr = SaiTub(cdpAddress);
+    bytes32 _cdpId = tokenIdToCdpId[_deftyTokenId];
+
     require(msg.sender == ownerOf(_deftyTokenId), 'Only the DYT owner can unwrap the NFT');
-
-    string memory _cdpString = this.tokenURI(_deftyTokenId);
-    bytes32 _cdpId = UtilsLib._stringToBytes32(_cdpString);
-
-    MakerCDP untrustedMkr = MakerCDP(cdpAddress);
-    untrustedMkr.give(_cdpId, msg.sender); // should require success of call ?
+    untrustedMkr.give(_cdpId, msg.sender); // When placed in a require get TypeError: No matching declaration found after argument-dependent lookup.
 
     _burn(_deftyTokenId);
+    tokenIdToCdpId[_deftyTokenId];
     proofRegistery[_cdpId].state = WrapState.Unwrapped;
+
+    emit Unwrapped(msg.sender, _cdpId, _deftyTokenId);
   }
 }

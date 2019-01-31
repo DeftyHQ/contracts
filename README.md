@@ -5,6 +5,12 @@
 This project requires yarn and truffle.
 
 1. Clone the project
+2. This project uses `git submodules` to get the `tub.sol` contract from  
+    MakerDao, so after cloning you need to run
+    ```
+    $ git submodule init
+    $ git submodule update
+    ```
 2. Run `yarn` to install dependencies
 3. Create a file named `.env.<NODE_ENV>`
 4. Run `yarn build`
@@ -33,4 +39,3 @@ connection to the chain.
 - [ ] Downsides of a Proxy contract for upgrades?
 - [ ] How to test a function which includes a inter-contract call?
       What are the options to intercept and mock response?
-- [ ]
