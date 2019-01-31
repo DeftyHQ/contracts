@@ -1,0 +1,3 @@
+[submodule "contracts/lib/dappsys-monolithic"]
+	path = contracts/lib/dappsys-monolithic
+	url = https://github.com/michaelhly/dappsys-monolithic.git
