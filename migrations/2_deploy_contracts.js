@@ -1,7 +1,7 @@
+const env = require('yenv')('../env.yaml', { raw: true });
 const DeftyWrap = artifacts.require('DeftyWrap');
 
-// Set by dotenv-flow in truffle-config.js
-const makerCDPAddress = process.env.DAI_TUB;
+const makerCDPAddress = env.ETH_DAI_TUB;
 
 module.exports = function(deployer) {
   deployer.deploy(DeftyWrap, makerCDPAddress);

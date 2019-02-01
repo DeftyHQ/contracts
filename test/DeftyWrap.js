@@ -85,6 +85,19 @@ contract('DeftyWrap', (accounts) => {
   describe('wrap()', () => {
     let instance, user, notUser, doppelganger;
 
+    // Relies on web3 and tAssert
+    function wrapCup(contract, stub, user) {
+      const cupId = intToBytes32(149, web3)
+      await stub.lad.returns(user);
+      await contract.proveOwnership(cupId, { from: user })
+
+      await stub.lad.returns(instance.address);
+      return tAssert.passes(
+        instance.wrap(cupId, { from: user }),
+        'You must give() the CDP to this contract before calling wrap()'
+      )
+    }
+
     before(null, async () => {
       user = accounts[5]
       notUser = accounts[4]
@@ -125,7 +138,7 @@ contract('DeftyWrap', (accounts) => {
     });
 
     it('succeeds when all 3 conditions are meet', async () => {
-      // Sender must be previousOwener and contract must have the cdp.
+      // Sender must be previousOwner and contract must have the cdp.
       const cupId = intToBytes32(149, web3)
       await doppelganger.lad.returns(user);
       await instance.proveOwnership(cupId, { from: user })
@@ -136,6 +149,13 @@ contract('DeftyWrap', (accounts) => {
         'You must give() the CDP to this contract before calling wrap()'
       )
       await tAssert.eventEmitted(result, 'Wrapped', null)
+    });
+
+    it('creates a proof', async () => {
+      const success = wrapCup(instance, doppelganger, user);
+      await success()
+      const proofs = await instance.proofRegistery()
+      console.log(proofs)
     });
   })
 });

@@ -1,10 +1,10 @@
-require('dotenv-flow').config();
+const env = require('yenv')(null, { raw: true });
 const HDWalletProvider = require('truffle-hdwallet-provider');
 
 // Fetch env variables according to process.env.NODE_ENV configuraiton
 const config = {
-  networkURL: process.env.ETH_RPC_URL,
-  privateKey: process.env.PRIVATE_KEY
+  networkURL: env.ETH_RPC_URL,
+  privateKey: env.ETH_PRIVATE_KEY
 }
 
 module.exports = {
@@ -25,7 +25,7 @@ module.exports = {
       network_id: "*" // Match any network id
     },
     kovan: {
-      provider: () => new HDWalletProvider(config.PRIVATE_KEY, config.networkURL),
+      provider: () => new HDWalletProvider(config.privateKey, config.networkURL),
       host: config.networkURL,
       port: 8545,
       network_id: 42,

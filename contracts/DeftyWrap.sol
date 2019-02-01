@@ -41,19 +41,11 @@ contract DeftyWrap is Ownable, IERC721Metadata, ERC721Full {
     setCdpAddress(_cdpAddress);
   }
 
-
   function setCdpAddress(address _cdpAddress) public {
     require(msg.sender == owner(), 'Unauthorised');
     cdpAddress = _cdpAddress;
   }
 
-  /*
-    - Receive an existing cdpId
-    - If msg.sender is the current 'lad' we create a temporary NFT.
-      associate it to the cdpId and set it's state to inactive
-    - Set the owner of the tempNFT to msg.sender
-    The next step for the user would be to .give() the cdp to this contract.
-  */
   function proveOwnership(bytes32 _cdpId)
     public
   {
@@ -66,12 +58,6 @@ contract DeftyWrap is Ownable, IERC721Metadata, ERC721Full {
     emit Proved(msg.sender, _cdpId, proofRegistery[_cdpId].state);
   }
 
-  /*
-    - We check that the contract is the owner of the cdp
-    - And that the sender is the owner of the tempNFT
-    - create a real NFT from the temp NFT
-    - destroy the temp NFT
-  */
   function wrap(bytes32 _cdpId)
     public
     returns (uint256 _deftyTokenId)
@@ -91,13 +77,6 @@ contract DeftyWrap is Ownable, IERC721Metadata, ERC721Full {
     emit Wrapped(msg.sender, _cdpId, _deftyTokenId);
   }
 
-  /*
-    Since we are the owner, unwrapping is easy.
-    - Check that msg.sender is NFT owner
-    - get the associated cdpId
-    - give() cdp to sender
-    - burn NFT.
-  */
   function unwrap(uint256 _deftyTokenId)
     public
     returns (bool)

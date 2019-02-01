@@ -5,19 +5,20 @@
   "author": "Emmanuel Vilsbol <emmanuel@vilsbol.com>",
   "license": "MIT",
   "scripts": {
-    "build": "NODE_ENV=development; truffle migrate --reset",
-    "console": "NODE_ENV=development; truffle console",
-    "test": "NODE_ENV=development; truffle test",
-    "build:kovan": "NODE_ENV=staging; truffle migrate --reset --network kovan",
-    "console:kovan": "NODE_ENV=staging; truffle console --network kovan"
+    "build": "cross-env NODE_ENV=development truffle migrate --reset",
+    "console": "cross-env NODE_ENV=development truffle console",
+    "test": "cross-env NODE_ENV=development truffle test",
+    "build:kovan": "cross-env NODE_ENV=staging truffle migrate --reset --network kovan",
+    "console:kovan": "cross-env NODE_ENV=staging truffle console --network kovan"
   },
   "dependencies": {
     "openzeppelin-solidity": "^2.1.2"
   },
   "devDependencies": {
-    "dotenv-flow": "^0.2.0",
+    "cross-env": "^5.2.0",
     "ethereum-doppelganger": "^0.0.6",
     "truffle-assertions": "^0.7.2",
-    "truffle-hdwallet-provider": "^1.0.2"
+    "truffle-hdwallet-provider": "^1.0.2",
+    "yenv": "^2.1.0"
   }
 }
