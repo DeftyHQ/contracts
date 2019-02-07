@@ -1,3 +1,4 @@
+const env = require('yenv')(null, { raw: true });
 
 const tAssert = require('truffle-assertions');
 const Doppelganger = require('ethereum-doppelganger').default;
@@ -8,8 +9,8 @@ const { createWallet, intToBytes32 } = require('./utils');
 const config = {
   name: 'DeftyToken',
   symbol: 'DTY',
-  cdpAddress: process.env.ETH_DAI_TUB,
-  wallet: createWallet(process.env.ETH_PRIVATE_KEY, process.env.ETH_RPC_URL)
+  tubAddress: env.ETH_DAI_TUB,
+  wallet: createWallet(env.ETH_PRIVATE_KEY, env.ETH_RPC_URL)
 }
 
 contract('DeftyWrap', (accounts) => {
@@ -17,7 +18,7 @@ contract('DeftyWrap', (accounts) => {
     let instance;
 
     beforeEach('setup contract for each test', async() => {
-      instance = await DeftyWrap.new(config.cdpAddress);
+      instance = await DeftyWrap.new(config.tubAddress);
     });
 
     it('has the correct name', async () => {
@@ -30,21 +31,21 @@ contract('DeftyWrap', (accounts) => {
       assert.equal(symbol, config.symbol, 'Symbol constant is different from expected');
     });
 
-    it('is initilized with a cdpAddress', async () => {
-      const addrr = await instance.cdpAddress()
-      assert.equal(addrr.toLowerCase(), config.cdpAddress.toLowerCase(), 'Address is different from constructor argument');
+    it('is initilized with a tubAddress', async () => {
+      const addrr = await instance.tubAddress()
+      assert.equal(addrr.toLowerCase(), config.tubAddress.toLowerCase(), 'Address is different from constructor argument');
     });
 
-    it('setCdpAddress() can change the address', async () => {
-      await instance.setCdpAddress(accounts[1])
-      const addrr = await instance.cdpAddress()
+    it('setTubAddress() can change the address', async () => {
+      await instance.setTubAddress(accounts[1])
+      const addrr = await instance.tubAddress()
       assert.equal(addrr, accounts[1], 'Address change not taken into account')
     })
 
-    it('setCdpAddress() can only be called by contract owner', async () => {
+    it('setTubAddress() can only be called by contract owner', async () => {
       // The contract owner is accounts[0] so we try to send from another account.
       await tAssert.reverts(
-        instance.setCdpAddress(accounts[1], { from: accounts[2] }),
+        instance.setTubAddress(accounts[1], { from: accounts[2] }),
       )
     });
   });
@@ -86,7 +87,7 @@ contract('DeftyWrap', (accounts) => {
     let instance, user, notUser, doppelganger;
 
     // Relies on web3 and tAssert
-    function wrapCup(contract, stub, user) {
+    async function wrapCup(contract, stub, user) {
       const cupId = intToBytes32(149, web3)
       await stub.lad.returns(user);
       await contract.proveOwnership(cupId, { from: user })
@@ -123,7 +124,7 @@ contract('DeftyWrap', (accounts) => {
       await instance.proveOwnership(cupId, { from: user })
       await tAssert.reverts(
         instance.wrap(cupId, { from: notUser }),
-        'You must be the previousOwner in order to wrap a CDP'
+        'You must be the lad in order to wrap a CDP'
       )
     });
 
@@ -148,12 +149,10 @@ contract('DeftyWrap', (accounts) => {
         instance.wrap(cupId, { from: user }),
         'You must give() the CDP to this contract before calling wrap()'
       )
-      await tAssert.eventEmitted(result, 'Wrapped', null)
     });
 
     it('creates a proof', async () => {
-      const success = wrapCup(instance, doppelganger, user);
-      await success()
+      const success = await wrapCup(instance, doppelganger, user);
       const proofs = await instance.proofRegistery()
       console.log(proofs)
     });

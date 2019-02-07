@@ -21,3 +21,4 @@ log/
 node_modules
 env.yaml
 build
+give.js

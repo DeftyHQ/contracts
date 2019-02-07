@@ -27,11 +27,7 @@ contract ISaiTub {
     function pip() public returns (PipInterface);
     function pep() public returns (PepInterface);
     function tag() public returns (uint);
-
-    function lad(bytes32 cup) external view returns (address) {
-      return msg.sender;
-    }
-
+    function lad(bytes32) external view returns (address);
     function drip() public;
 }
 

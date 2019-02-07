@@ -3,94 +3,105 @@ pragma solidity ^0.5.0;
 import 'openzeppelin-solidity/contracts/ownership/Ownable.sol';
 import 'openzeppelin-solidity/contracts/drafts/Counter.sol';
 import 'openzeppelin-solidity/contracts/token/ERC721/ERC721Full.sol';
-import 'openzeppelin-solidity/contracts/token/ERC721/IERC721Metadata.sol';
 import { ISaiTub as SaiTub } from './lib/sai/ITub.sol';
 
-contract DeftyWrap is Ownable, IERC721Metadata, ERC721Full {
+contract DeftyWrap is Ownable, ERC721Full {
 
   using Counter for Counter.Counter;
-  Counter.Counter private tokenId;
+  Counter.Counter private tokenCounter;
 
   enum WrapState {
     Undefined,
-    PendingTransfer,
+    Proved,
     Wrapped,
     Unwrapped
   }
 
   struct ProofOfOwnership {
-    bytes32 cdpId;
-    uint256 tokenId;
-    address previousOwner;
+    bytes32 cup;
+    uint256 nft;
+    address lad;
     WrapState state;
   }
 
-  address public cdpAddress;
+  address public tubAddress;
   mapping(bytes32 => ProofOfOwnership) public proofRegistery;
-  mapping(uint256 => bytes32) public tokenIdToCdpId;
+  mapping(uint256 => bytes32) public cdpRegistry;
 
-  event Proved(address sender, bytes32 cdpId, WrapState state);
-  event Wrapped(address sender, bytes32 cdpId, uint256 tokenId);
-  event Unwrapped(address sender, bytes32 cdpId, uint256 tokenId);
+  event Proved(address sender, bytes32 cup, WrapState state);
+  event Wrapped(address sender, bytes32 cup, uint256 token);
+  event Unwrapped(address sender, bytes32 cup, uint256 token);
 
-  constructor(address _cdpAddress)
+  constructor(address tubAddress_)
     Ownable()
     ERC721Full('DeftyToken', 'DTY')
     public
   {
-    setCdpAddress(_cdpAddress);
+    setTubAddress(tubAddress_);
   }
 
-  function setCdpAddress(address _cdpAddress) public {
+  function setTubAddress(address tubAddress_) public {
     require(msg.sender == owner(), 'Unauthorised');
-    cdpAddress = _cdpAddress;
+    tubAddress = tubAddress_;
   }
 
-  function proveOwnership(bytes32 _cdpId)
+  function getCupId(uint256 token) public view returns (bytes32) {
+    return cdpRegistry[token];
+  }
+
+  function gettoken(bytes32 cup) public view returns (uint256) {
+    return proofRegistery[cup].nft;
+  }
+
+  function getStatus(bytes32 cup) public view returns (WrapState) {
+    return proofRegistery[cup].state;
+  }
+
+  function proveOwnership(bytes32 cup)
     public
   {
-    SaiTub untrustedMkr = SaiTub(cdpAddress);
-    require(untrustedMkr.lad(_cdpId) == msg.sender, 'The msg.sender is not the owner of the CDP');
+    SaiTub untrustedMkr = SaiTub(tubAddress);
+    require(untrustedMkr.lad(cup) == msg.sender, 'The msg.sender is not the owner of the CDP');
 
-    proofRegistery[_cdpId].cdpId = _cdpId;
-    proofRegistery[_cdpId].previousOwner = msg.sender;
-    proofRegistery[_cdpId].state = WrapState.PendingTransfer;
-    emit Proved(msg.sender, _cdpId, proofRegistery[_cdpId].state);
+    proofRegistery[cup].cup = cup;
+    proofRegistery[cup].lad = msg.sender;
+    proofRegistery[cup].state = WrapState.Proved;
+    emit Proved(msg.sender, cup, proofRegistery[cup].state);
   }
 
-  function wrap(bytes32 _cdpId)
+  function wrap(bytes32 cup)
     public
-    returns (uint256 _deftyTokenId)
+    returns (uint256 nft)
   {
-    SaiTub untrustedMkr = SaiTub(cdpAddress);
-    require(proofRegistery[_cdpId].state != WrapState.Undefined, 'You must proveOwnership() of CDP before wrapping');
-    require(proofRegistery[_cdpId].previousOwner == msg.sender, 'You must be the previousOwner in order to wrap a CDP');
-    require(untrustedMkr.lad(_cdpId) == address(this), 'You must give() the CDP to this contract before calling wrap()');
+    SaiTub untrustedMkr = SaiTub(tubAddress);
+    require(proofRegistery[cup].state != WrapState.Undefined, 'You must proveOwnership() of CDP before wrapping');
+    require(proofRegistery[cup].lad == msg.sender, 'You must be the lad in order to wrap a CDP');
+    require(untrustedMkr.lad(cup) == address(this), 'You must give() the CDP to this contract before calling wrap()');
 
-     _deftyTokenId = tokenId.next();
-    _mint(msg.sender, _deftyTokenId);
+     nft = tokenCounter.next();
+    _mint(msg.sender, nft);
 
-    proofRegistery[_cdpId].tokenId = _deftyTokenId;
-    proofRegistery[_cdpId].state = WrapState.Wrapped;
+    proofRegistery[cup].nft = nft;
+    proofRegistery[cup].state = WrapState.Wrapped;
 
-    tokenIdToCdpId[_deftyTokenId] = _cdpId;
-    emit Wrapped(msg.sender, _cdpId, _deftyTokenId);
+    cdpRegistry[nft] = cup;
+    emit Wrapped(msg.sender, cup, nft);
   }
 
-  function unwrap(uint256 _deftyTokenId)
+  function unwrap(uint256 nft)
     public
     returns (bool)
   {
-    SaiTub untrustedMkr = SaiTub(cdpAddress);
-    bytes32 _cdpId = tokenIdToCdpId[_deftyTokenId];
+    SaiTub untrustedMkr = SaiTub(tubAddress);
+    bytes32 cup = cdpRegistry[nft];
 
-    require(msg.sender == ownerOf(_deftyTokenId), 'Only the DYT owner can unwrap the NFT');
-    untrustedMkr.give(_cdpId, msg.sender); // When placed in a require get TypeError: No matching declaration found after argument-dependent lookup.
+    require(msg.sender == ownerOf(nft), 'Only the DYT owner can unwrap the NFT');
+    untrustedMkr.give(cup, msg.sender); // When placed in a require get TypeError: No matching declaration found after argument-dependent lookup.
 
-    _burn(_deftyTokenId);
-    tokenIdToCdpId[_deftyTokenId];
-    proofRegistery[_cdpId].state = WrapState.Unwrapped;
+    _burn(nft);
+    cdpRegistry[nft];
+    proofRegistery[cup].state = WrapState.Unwrapped;
 
-    emit Unwrapped(msg.sender, _cdpId, _deftyTokenId);
+    emit Unwrapped(msg.sender, cup, nft);
   }
 }
